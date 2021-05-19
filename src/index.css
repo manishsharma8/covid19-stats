@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+tr:nth-child(odd) td{
+    background-color: white;
+}
+
+tr:nth-child(even) td{
+    --tw-bg-opacity: 1;
+    background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
+}
+
+tr td{
+    min-width: 120px;
+    max-width: 120px;
+    height: auto;
+}
+
+tr td:first-child{
+    min-width: 150px;
+    max-width: 150px;
+}
+
+tr th{
+    text-align: right;
+}
+
+tr th:first-child{
+    text-align: left;
+}
