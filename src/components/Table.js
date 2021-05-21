@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import axios from 'axios'
 
-const Table = () => {
-
+const Table = (props) => {
     const rowHeadings = ['Country', 'Confirmed', 'Active', 'Recovered', 'Deceased', 'Tests']
     const [countriesData, setCountriesData] = useState([]);
     const [nameAsc, setNameAsc] = useState(false)
@@ -13,18 +11,9 @@ const Table = () => {
     const [testAsc, setTestAsc] = useState(false)
 
     useEffect(() => {
-        async function fetchCountries(){
-            const response = await axios.get("https://corona.lmao.ninja/v3/covid-19/countries")
-            setCountriesData(response.data.sort(compareValues('cases', 'desc')))
-        }
-        fetchCountries();
-    }, [])
+        setCountriesData(props.countriesData.sort(compareValues('cases', 'desc')))
+    }, [props.countriesData])
 
-    useEffect(() => {
-        console.log(countriesData)
-    }, [countriesData])
-
-    
     function compareValues(key, order = 'asc') {
         return function innerSort(a, b) {
             if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
