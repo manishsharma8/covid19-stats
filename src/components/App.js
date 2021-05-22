@@ -1,7 +1,7 @@
 import React from 'react'
 import Home from './Home'
 import Country from './Country'
-import { Router, Route, Switch } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import history from '../history'
 
 const App = () => {

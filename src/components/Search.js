@@ -4,13 +4,14 @@ import history from '../history'
 
 const Search = ({countriesData}) => {
     
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const countries = []
 
     useEffect(() => {
         for(let i=0; i<countriesData.length; i++){
             countries.push(countriesData[i].country)
         }
-    }, [countriesData])
+    }, [countriesData, countries])
 
     const onSubmit=(value)=>{
         console.log("Clicked",value)
