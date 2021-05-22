@@ -6,12 +6,21 @@ import Table from './Table'
 import Search from './Search'
 
 const Home = () => {
-    const [countriesData,setCountriesData] = useState([]) 
+    const [countriesData, setCountriesData] = useState([])
+    const [globalData, setGlobalData] = useState([])
 
     useEffect(() => {
         async function getData(){
             const response = await axios.get("https://corona.lmao.ninja/v3/covid-19/countries")
-            setCountriesData(response.data)            
+            setCountriesData(response.data)
+        }
+        getData();
+    }, [])
+
+    useEffect(() => {
+        async function getData(){
+            const response = await axios.get("https://corona.lmao.ninja/v3/covid-19/all")
+            setGlobalData(response.data)
         }
         getData();
     }, [])
@@ -20,7 +29,7 @@ const Home = () => {
         <div className="mx-10 md:mx-80">
             <div className="text-center font-bold text-4xl my-20 text-gray-500">Covid Statistics</div>
             <Search countriesData={countriesData} />
-            <DailyCountTab />
+            <DailyCountTab data={globalData} />
             <Table countriesData={countriesData} />
         </div>
     )

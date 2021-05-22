@@ -55,28 +55,26 @@ class Autocomplete extends Component {
     });
 
     // TODO: Pass targetvalue to component
-    console.log(e.currentTarget.innerText)
+    // console.log(e.currentTarget.innerText)
+    this.props.onSubmit(e.currentTarget.innerText)
   };
 
   onKeyDown = e => {
     const { activeSuggestion, filteredSuggestions } = this.state;
 
     // User pressed the enter key
-    if (e.keyCode === 13) {
-      this.setState({
-        activeSuggestion: 0,
-        showSuggestions: false,
-        userInput: filteredSuggestions[activeSuggestion]
-      });
-      
+    if (e.keyCode === 13) {      
       if(!filteredSuggestions.length){
         this.setState({showError: true})
       }
-      
-      if (activeSuggestion >= filteredSuggestions.length) {
-        return
+      else{
+        this.props.onSubmit(filteredSuggestions[activeSuggestion])
+        this.setState({
+          activeSuggestion: 0,
+          showSuggestions: false,
+          userInput: filteredSuggestions[activeSuggestion]
+        });
       }
-      
     }
 
     // User pressed the up arrow
